@@ -1,0 +1,25 @@
+{
+  "name": "neoncrm",
+  "version": "2.0.0",
+  "description": "NeonCRM REST API client for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha index.test.js"
+  },
+  "keywords": [
+    "neon",
+    "neon-crm",
+    "rest",
+    "api-client"
+  ],
+  "author": "Brice Dobry <brice@obycode.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "mocha": "^8.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "moment": "^2.29.1"
+  }
+}

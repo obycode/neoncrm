@@ -6,13 +6,13 @@ This module provides a simple async/await interface to
 ## Installation
 
 ```bash
-npm install neoncrm
+npm install @obycode/neoncrm
 ```
 
 ## Setup
 
 ```js
-const neoncrm = require("neoncrm");
+const neoncrm = require("@obycode/neoncrm");
 let neon = new neoncrm.Client(
   process.env.NEON_ORG_ID,
   process.env.NEON_API_KEY

@@ -1,6 +1,6 @@
 {
   "name": "@obycode/neoncrm",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "NeonCRM REST API client for Node.js",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,10 @@
   ],
   "author": "Brice Dobry <brice@obycode.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obycode/neoncrm"
+  },
   "devDependencies": {
     "dotenv": "^8.2.0",
     "mocha": "^8.2.1"

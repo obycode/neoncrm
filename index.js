@@ -3,6 +3,16 @@ const moment = require("moment");
 
 class Client {
   constructor(username, apiKey) {
+    this.config = {
+      headers: {
+        "NEON-API-VERSION": "2.1",
+      },
+      auth: {
+        username: username,
+        password: apiKey,
+      },
+    };
+
     this.username = username;
     this.apiKey = apiKey;
   }
@@ -23,12 +33,7 @@ class Client {
           },
         ],
       },
-      {
-        auth: {
-          username: this.username,
-          password: this.apiKey,
-        },
-      }
+      this.config
     );
     if (
       response.data.searchResults == null ||
@@ -60,12 +65,7 @@ class Client {
           },
         },
       },
-      {
-        auth: {
-          username: this.username,
-          password: this.apiKey,
-        },
-      }
+      this.config
     );
     return response.data.id;
   }
@@ -81,12 +81,7 @@ class Client {
         amount: amount,
         date: moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
       },
-      {
-        auth: {
-          username: this.username,
-          password: this.apiKey,
-        },
-      }
+      this.config
     );
     return response.data.id;
   }

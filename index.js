@@ -17,6 +17,15 @@ class Client {
     this.apiKey = apiKey;
   }
 
+  async getAccount(accountId) {
+    let response = await axios.get(
+      `https://api.neoncrm.com/v2/accounts/${accountId}`,
+      this.config
+    );
+
+    return response.data;
+  }
+
   async findAccount(email) {
     let response = await axios.post(
       "https://api.neoncrm.com/v2/accounts/search/",
@@ -84,6 +93,50 @@ class Client {
       this.config
     );
     return response.data.id;
+  }
+
+  async getEventTicketOptions(eventId) {
+    let response = await axios.get(
+      `https://api.neoncrm.com/v2/events/${eventId}/tickets`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async getEventRegistrations(eventId) {
+    var response;
+    var registrations = [];
+    var page = 0;
+    do {
+      response = await axios.get(
+        `https://api.neoncrm.com/v2/events/${eventId}/eventRegistrations?page=${page}`,
+        this.config
+      );
+      registrations.push(...response.data.eventRegistrations);
+      page++;
+    } while (
+      response.data.pagination.currentPage <
+      response.data.pagination.totalPages - 1
+    );
+
+    return registrations;
+  }
+
+  async getEventRegistration(registrationId) {
+    let response = await axios.get(
+      `https://api.neoncrm.com/v2/eventRegistrations/${registrationId}`,
+      this.config
+    );
+    return response.data;
+  }
+
+  async updateEventRegistration(registration) {
+    let response = await axios.put(
+      `https://api.neoncrm.com/v2/eventRegistrations/${registration.id}`,
+      registration,
+      this.config
+    );
+    return response.data;
   }
 }
 

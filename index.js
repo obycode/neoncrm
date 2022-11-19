@@ -5,7 +5,7 @@ class Client {
   constructor(username, apiKey) {
     this.config = {
       headers: {
-        "NEON-API-VERSION": "2.1",
+        "NEON-API-VERSION": "2.4",
       },
       auth: {
         username: username,
@@ -51,6 +51,38 @@ class Client {
       return null;
     }
     return response.data.searchResults[0]["Account ID"];
+  }
+
+  async findEmailFromName(lastName, firstName) {
+    let response = await axios.post(
+      "https://api.neoncrm.com/v2/accounts/search/",
+      {
+        outputFields: ["Email 1"],
+        pagination: {
+          pageSize: 1,
+        },
+        searchFields: [
+          {
+            field: "Last Name",
+            operator: "EQUAL",
+            value: lastName,
+          },
+          {
+            field: "First Name",
+            operator: "EQUAL",
+            value: firstName,
+          },
+        ],
+      },
+      this.config
+    );
+    if (
+      response.data.searchResults == null ||
+      response.data.searchResults.length < 1
+    ) {
+      return null;
+    }
+    return response.data.searchResults[0]["Email 1"];
   }
 
   async createAccount(email, firstname, lastname, phone, source = "") {
